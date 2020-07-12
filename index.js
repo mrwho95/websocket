@@ -24,4 +24,10 @@ io.on('connection', function(socket){
 		//send message data to all client
 		io.sockets.emit('chat', data)
 	});
+
+	//listen who is typing
+	socket.on('typing', function(data){
+		//broadcast who is typing, other client can see who is typing
+		socket.broadcast.emit('typing', data);
+	});
 });
