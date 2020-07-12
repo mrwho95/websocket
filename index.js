@@ -18,4 +18,10 @@ var io = socket(server);
 io.on('connection', function(socket){
 	//both server and client front end established the socket then it will appear result below
 	console.log('made socket connection', socket.id);
+
+	//listen message sent by client
+	socket.on('chat', function(data){
+		//send message data to all client
+		io.sockets.emit('chat', data)
+	});
 });
